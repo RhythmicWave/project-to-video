@@ -1,0 +1,15 @@
+# 本地依赖、缓存和临时渲染；assets/previews 中的通用演示保留
+node_modules/
+.cache/
+out/
+renders/
+__pycache__/
+*.pyc
+dist/
+build/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

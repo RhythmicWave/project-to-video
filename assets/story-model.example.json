@@ -1,0 +1,71 @@
+{
+  "project": {
+    "name": "Example Request Service",
+    "core_promise": "Turn an incoming request into a checked result and a recoverable record."
+  },
+  "flows": [
+    {
+      "id": "request-lifecycle",
+      "name": "请求生命周期",
+      "trigger": "客户端提交请求",
+      "normal_end": "结果返回并留下记录",
+      "branch_required": true,
+      "steps": [
+        {
+          "id": "receive",
+          "from": "客户端",
+          "to": "请求入口",
+          "action": "接收请求",
+          "result": "获得关联 ID",
+          "evidence": ["src/transport/server.ts:receive"]
+        },
+        {
+          "id": "process",
+          "from": "请求入口",
+          "to": "处理器",
+          "action": "校验并处理",
+          "result": "生成结果或进入分支",
+          "evidence": ["src/service/request.ts:process"]
+        },
+        {
+          "id": "persist",
+          "from": "处理器",
+          "to": "记录存储",
+          "action": "追加记录",
+          "result": "后续请求可读取",
+          "evidence": ["src/store/log.ts:append"]
+        }
+      ],
+      "branches": [
+        {
+          "id": "rejected",
+          "condition": "校验未通过",
+          "outcome": "返回错误并结束本次请求",
+          "next": "end",
+          "evidence": ["src/service/request.ts:reject"]
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "overview",
+      "flow": "request-lifecycle",
+      "claim": "一次请求穿过入口、处理器和记录存储",
+      "mode": "overview",
+      "evidence": ["flow:request-lifecycle"],
+      "covers": ["入口", "结果去向"]
+    },
+    {
+      "id": "gate",
+      "flow": "request-lifecycle",
+      "claim": "校验失败时请求沿错误分支结束",
+      "mode": "progressive_causal",
+      "evidence": ["flow:request-lifecycle.branch:rejected"],
+      "covers": ["条件分支", "错误结果"]
+    }
+  ],
+  "coverage": [
+    {"question": "失败如何返回？", "scene": "gate", "status": "video"}
+  ]
+}

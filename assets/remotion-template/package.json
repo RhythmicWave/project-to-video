@@ -1,0 +1,23 @@
+{
+  "name": "project-to-video-template",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio src/index.tsx --no-open",
+    "check": "tsc --noEmit",
+    "check:layout": "node scripts/check-layout.mjs layout.example.json",
+    "render": "remotion render src/index.tsx FocusTrailDemo out/focus-trail.mp4 --codec=h264",
+    "still": "remotion still src/index.tsx FocusTrailDemo out/focus-trail.png --frame=150",
+    "render:progressive": "remotion render src/index.tsx ProgressiveCausalDemo out/progressive-causal.mp4 --codec=h264"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.524",
+    "remotion": "4.0.524",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "7.0.2"
+  }
+}

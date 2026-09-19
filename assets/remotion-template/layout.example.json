@@ -1,0 +1,41 @@
+{
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "safeArea": {"left": 48, "right": 48, "top": 52, "bottom": 52}
+  },
+  "scenes": [
+    {
+      "id": "example-flow",
+      "nodes": [
+        {
+          "id": "source",
+          "bounds": {"x": 90, "y": 220, "width": 260, "height": 220},
+          "contentBox": {"x": 114, "y": 336, "width": 212, "height": 80}
+        },
+        {
+          "id": "target",
+          "bounds": {"x": 620, "y": 220, "width": 260, "height": 220},
+          "contentBox": {"x": 644, "y": 336, "width": 212, "height": 80}
+        }
+      ],
+      "textBlocks": [
+        {
+          "id": "source-title",
+          "box": {"x": 114, "y": 246, "width": 212, "height": 30},
+          "text": "输入节点",
+          "fontSize": 24,
+          "maxLines": 1
+        }
+      ],
+      "routes": [
+        {
+          "id": "source-to-target",
+          "from": {"node": "source", "side": "right", "fraction": 0.5},
+          "to": {"node": "target", "side": "left", "fraction": 0.5},
+          "points": [[350, 330], [485, 330], [485, 330], [620, 330]]
+        }
+      ]
+    }
+  ]
+}
