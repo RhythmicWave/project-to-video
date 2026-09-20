@@ -91,7 +91,7 @@ export const PhaseLoop=({phases,beats,time,radius=145,children}:{phases:Phase[];
   const active=[...beats].filter(b=>b.at<=time).sort((a,b)=>a.at-b.at).at(-1)?.phaseId;
   const positions=phases.map((_,i)=>{const angle=-Math.PI/2+i*2*Math.PI/phases.length;return [Math.cos(angle)*radius,Math.sin(angle)*radius] as Point;});
   return <g>
-    {positions.map((p,i)=>{const next=positions[(i+1)%positions.length];const dx=next[0]-p[0],dy=next[1]-p[1],len=Math.hypot(dx,dy);const from:[number,number]=[p[0]+dx/len*49,p[1]+dy/len*49],to:[number,number]=[next[0]-dx/len*49,next[1]-dy/len*49];return <Transfer key={i} points={[from,to]} time={-1} start={0} end={1} color={c.line}/>;})}
+    {positions.map((p,i)=>{const next=positions[(i+1)%positions.length];const dx=next[0]-p[0],dy=next[1]-p[1],len=Math.hypot(dx,dy);const from:[number,number]=[p[0]+dx/len*49,p[1]+dy/len*49],to:[number,number]=[next[0]-dx/len*49,next[1]-dy/len*49];return <Transfer key={i} points={[from,to]} time={-1} start={0} end={1} color={c.line} routing="free"/>;})}
     {phases.map((phase,i)=><g key={phase.id} transform={`translate(${positions[i].join(' ')})`}>
       <circle r={47} fill={phase.id===active?'#294A50':'#192D3D'} stroke={phase.id===active?c.teal:c.line} strokeWidth={3}/>
       <Label x={0} y={7} size={21} color={phase.id===active?c.teal:c.muted}>{phase.label}</Label>

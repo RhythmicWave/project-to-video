@@ -43,7 +43,15 @@ export const OverviewDetail = ({time, start, duration = pacing.focus, overview, 
     <g transform={`translate(${transform.x} ${transform.y}) scale(${transform.scale})`}>{overview}</g>
     <g opacity={opacity}>
       <circle cx={anchor[0]} cy={anchor[1]} r={13} fill="none" stroke={c.gold} strokeWidth={3}/>
-      <Transfer points={[anchor, [miniEdge + 20, anchor[1]], [target[0] - 22, target[1]], target]} time={-1} start={0} end={1} color={c.gold}/>
+      {opacity > 0 && (
+        <Transfer
+          points={[anchor, [miniEdge + 40, anchor[1]], [miniEdge + 40, target[1]], [target[0] - 22, target[1]], target]}
+          time={-1}
+          start={0}
+          end={1}
+          color={c.gold}
+        />
+      )}
       <rect {...detailBox} rx={16} fill={c.bg} stroke={c.line} strokeWidth={2}/>
       <Label x={detailBox.x + 22} y={detailBox.y + 35} size={24} anchor="start">{title}</Label>
       <g transform={`translate(${detailBox.x + 22} ${detailBox.y + 65})`}>{detail}</g>
