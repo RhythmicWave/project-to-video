@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/15c0d4d9-cdc9-4687-aaae-a0ab7003616e
+
 # project-to-video
 
 > 把项目主线做成一个动画，帮助你快速理解。
@@ -16,8 +20,9 @@
 
 ## 先看效果
 
-下面的预览来自 Skill 自带的通用演示工程。
-<video controls src="assets/previews/composition-patterns.mp4" title="Title"></video>
+下面的预览来自 Skill 自带的通用演示Demo视频。
+
+https://github.com/user-attachments/assets/ee333178-5f02-48f1-a056-304d81ff9da3
 
 
 | 预览 | 展示什么 |
