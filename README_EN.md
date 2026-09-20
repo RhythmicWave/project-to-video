@@ -18,7 +18,7 @@ Code and documentation provide fragments. The hard part is reconnecting entry po
 
 These bundled videos demonstrate reusable patterns with neutral example data. Their on-screen labels are currently Chinese.
 
-<video controls src="assets/previews/composition-patterns.mp4" title="Composition patterns demo"></video>
+https://github.com/user-attachments/assets/ee333178-5f02-48f1-a056-304d81ff9da3
 
 | Preview | What it shows |
 | --- | --- |

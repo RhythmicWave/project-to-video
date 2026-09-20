@@ -1,7 +1,3 @@
-
-
-https://github.com/user-attachments/assets/15c0d4d9-cdc9-4687-aaae-a0ab7003616e
-
 # project-to-video
 
 > 把项目主线做成一个动画，帮助你快速理解。
