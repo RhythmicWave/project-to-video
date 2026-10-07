@@ -20,6 +20,17 @@ def number(value: object) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
 
 
+def last_video_frame(stream: dict, duration: float, fps: float) -> int:
+    """CFR frame count beats a rounded duration, which may exceed an integer by microseconds."""
+    try:
+        count = int(stream.get("nb_frames", ""))
+    except (TypeError, ValueError):
+        count = 0
+    if count <= 0:
+        count = round(duration * fps)
+    return max(0, count - 1)
+
+
 def validate_chapters(chapters: object, duration: float, fps: float) -> list[str]:
     errors: list[str] = []
     if not isinstance(chapters, list) or not chapters:
@@ -101,7 +112,7 @@ def main() -> int:
         print("\n".join(errors))
         return 1
     if args.extract:
-        last_frame = max(0, math.ceil(duration * fps - 1e-6) - 1)
+        last_frame = last_video_frame(stream, duration, fps)
         frames = {0, last_frame}
         for chapter in chapters:
             frames.add(round((chapter["start"] + chapter["end"]) / 2 * fps))

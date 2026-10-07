@@ -20,8 +20,9 @@ export const WrappedLabel = ({x, y, text, maxWidth, size = 24, lineHeight = size
 </text>;
 
 // 消息是可携带类型与内容的载荷，移动时保留它的视觉身份。
-export const Payload=({x,y,label='任务',small=false,color=c.gold,opacity=1}:{x:number;y:number;label?:string;small?:boolean;color?:string;opacity?:number})=>{
-  const half=Math.max(94,[...label].reduce((w,char)=>w+(/[\u2e80-\uffff]/.test(char)?23:13.5),0)/2+23);
+export const Payload=({x,y,label='任务',small=false,color=c.gold,opacity=1,minWidth=188}:{x:number;y:number;label?:string;small?:boolean;color?:string;opacity?:number;minWidth?:number})=>{
+  if(!Number.isFinite(minWidth)||minWidth<=0)throw new Error('Payload.minWidth must be positive');
+  const half=Math.max(minWidth/2,[...label].reduce((w,char)=>w+(/[\u2e80-\uffff]/.test(char)?23:13.5),0)/2+23);
   return <g transform={`translate(${x} ${y})`} opacity={opacity}>
   <path d={small?'M-22 -15 H14 L24 -5 V15 H-22 Z':`M${-half} -27 H${half-17} L${half} -10 V27 H${-half} Z`} fill={color} stroke={color} strokeWidth={2}/>
   {small?<path d="M-12 -4 H10 M-12 4 H3" stroke={c.bg} strokeWidth={3}/>:<Label x={0} y={8} size={23} color={c.bg}>{label}</Label>}

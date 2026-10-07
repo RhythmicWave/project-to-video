@@ -2,7 +2,7 @@
 
 从 `assets/remotion-template/src/visual/` 复制所需实现及 `theme.ts` 到目标项目，或者复制整个模板。组件均在父级 SVG 中使用；坐标、时间与业务标签由调用者提供。颜色集中在 theme.ts，可按项目调整。
 
-同时复制 `pacing.ts`。它只提供动作时长的起点：默认 `balanced`，复习回看可选择 `fast-review`，文字密度高或首次学习可选择 `spacious`。组件仍保留显式 `duration`，不要为了套档位牺牲关键因果的观察时间。
+按实际 imports 复制依赖，例如使用节奏组件时带上 `pacing.ts`。它只提供动作时长的起点：默认 `balanced`，复习回看可选择 `fast-review`，文字密度高或首次学习可选择 `spacious`。组件仍保留显式 `duration`，不要为了套档位牺牲关键因果的观察时间。
 
 ## 系统表达
 
@@ -18,12 +18,16 @@
 | Paper | 结构化载荷或文档 | scale、label、lines、color；字段归属需要调用者另行嵌套 |
 | Toolbox | 可调用的工具能力 | scale、open、label；open 使用 0–1，表示打开程度 |
 | Beacon | 事件来源或广播点 | pulse、label；pulse 使用 0–1 周期，相邻对象和线路说明实际消费关系 |
-| Payload | 沿链路传递的载荷 | label、small、color、opacity；简短标签，small 只显示标记 |
+| Payload | 沿链路传递的载荷 | label、small、color、opacity、minWidth；短标签可调小最小宽度，默认188兼容旧画面；small 只显示标记 |
 | Label | SVG 文字 | size、color、anchor；不自动排版，长文本要缩短或自行换行。固定宽度文本优先使用 `WrappedLabel` |
 
 机器人、文件夹、数据库和工具箱提供可辨识的形象；是否使用拟物图标根据项目和画面密度选择。不要仅凭形象推断进程、持久化保证或自主决策能力。面板布局使用 `panelRegions` 预留 header/content/footer 安全区。
 
 ## 行为模式
+
+有顺序、并发或状态提交的执行动画优先使用[因果时间轴](causal-timeline.md)：`causal-timeline.mjs` 编译依赖，`CausalMotion.tsx` 提供传输、参与者、结果与镜头绑定，`CausalTimelineDemo` 演示顺序/分叉/汇合。后续步骤等前置完成，路径仅点亮已传输前缀；字幕和导出采样共用同一事件时间。
+
+后端应用实例、事件片段、快照、租约与事务写集合见[后端状态资源](backend-resources.md)，实现位于`BackendResources.tsx`，带有独立的中性演示。它们表示资源与状态，消息传递、接管、降级和共同提交的时序由场景控制。
 
 [Behaviors.tsx](../assets/remotion-template/src/visual/Behaviors.tsx) 使用显式时间，不读取真实时钟。
 
@@ -41,6 +45,8 @@
 ```
 
 ## 讲解场景
+
+[ArchitectureMap](architecture-map.md) 让全景和缩略图共享节点、连接和区域模型；聚焦框与执行环分开，传输使用已有因果时间轴。配套 Cache Aside 中性演示及模型/接收依赖检查。
 
 层级定位使用已有的 [FocusTrail](focus-navigation.md)。导航是讲解路径；真实父子关系、调用展开和临时聚焦窗口要区分。全景→局部可通过保持对象身份、缩放与导航同步实现，是否增加缩略全景由实际认知收益决定。
 

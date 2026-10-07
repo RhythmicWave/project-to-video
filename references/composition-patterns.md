@@ -26,4 +26,6 @@ width 默认 1000、rowHeight 默认 85；包含底部状态预留。一般展�
 
 ## geometry：图形端口与变换
 
+全景可使用[ArchitectureMap](architecture-map.md)共享拓扑和身份，OverviewDetail 只负责镜头与定位线。需要表现实际并发时，从[因果时间轴](causal-timeline.md)取得 branches 的 start/end，参与者、载荷和 join 使用相同事件，避免另写一组时刻。
+
 [geometry.ts](../assets/remotion-template/src/visual/geometry.ts) 提供 `port(box, side, fraction)`、`fitBox(source, viewport)` 与 `mapPoint(point, transform)`。以这些函数建立共享几何来源，避免移动了图标却忘记连线。box 是图形边界，标签区和避障路径仍由项目安排。

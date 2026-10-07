@@ -4,10 +4,16 @@
   "scripts": {
     "dev": "remotion studio src/index.tsx --no-open",
     "check": "tsc --noEmit",
-    "check:layout": "node scripts/check-layout.mjs layout.example.json",
+    "check:layout": "node scripts/check-layout.mjs layout.example.json && node scripts/check-layout.mjs layout.causal.json && node --import tsx scripts/build-map-layout.ts && node scripts/check-layout.mjs layout.map.json",
+    "check:timeline": "node --test scripts/test-causal-timeline.mjs",
+    "check:map": "node --import tsx --test scripts/test-architecture-map.tsx",
+    "render:map": "remotion render src/index.tsx ArchitectureMapDemo out/architecture-map.mp4 --codec=h264",
+    "render:causal": "remotion render src/index.tsx CausalTimelineDemo out/causal-timeline.mp4 --codec=h264",
     "render": "remotion render src/index.tsx FocusTrailDemo out/focus-trail.mp4 --codec=h264",
     "still": "remotion still src/index.tsx FocusTrailDemo out/focus-trail.png --frame=150",
-    "render:progressive": "remotion render src/index.tsx ProgressiveCausalDemo out/progressive-causal.mp4 --codec=h264"
+    "render:progressive": "remotion render src/index.tsx ProgressiveCausalDemo out/progressive-causal.mp4 --codec=h264",
+    "render:backend": "remotion render src/index.tsx BackendResourcesDemo out/backend-resources.mp4 --codec=h264",
+    "render:glyphs": "remotion render src/index.tsx BackendGlyphsDemo out/backend-glyphs.mp4 --codec=h264"
   },
   "dependencies": {
     "@remotion/cli": "4.0.524",
@@ -16,6 +22,8 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "4.23.15",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "typescript": "7.0.2"

@@ -1,0 +1,10 @@
+export type EventKind='task'|'transfer'|'state'|'join'|'presentation';
+export type EventSpec={id:string;kind:EventKind;duration:number;at?:number;after?:string[];with?:string;actor?:string;route?:string;reverse?:boolean;motion?:boolean};
+export type TimedEvent=EventSpec&{startFrame:number;endFrame:number};
+export type Phase='pending'|'running'|'done';
+export type Timeline={fps:number;events:readonly TimedEvent[];get:(id:string)=>TimedEvent;frameAt:(time:number)=>number;start:(id:string)=>number;end:(id:string)=>number;phase:(id:string,time:number)=>Phase;started:(id:string,time:number)=>boolean;done:(id:string,time:number)=>boolean;progress:(id:string,time:number)=>number;actorPhase:(actor:string,time:number)=>Phase};
+export type Cue=[number,string,{event:string;edge?:string}?];
+export function compileTimeline(specs:EventSpec[],fps?:number):Timeline;
+export function resolveCues(cues:Cue[],timeline:Timeline):Cue[];
+export function timelineWindows(timeline:Timeline,duration:number,cueTimes?:number[]):[number,number][];
+export function resolveChapter<T extends {id:string;duration:number;events:EventSpec[];cues:Cue[]}>(chapter:T,fps?:number):T&{timeline:Timeline;motionWindows:[number,number][]};

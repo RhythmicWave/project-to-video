@@ -24,7 +24,7 @@ def nonempty(value: object) -> bool:
 
 
 def strings(value: object) -> bool:
-    return isinstance(value, list) and all(nonempty(item) for item in value)
+    return isinstance(value, list) and bool(value) and all(nonempty(item) for item in value)
 
 
 def unique_ids(items: list[Any], label: str, errors: list[str]) -> set[str]:
@@ -38,7 +38,7 @@ def unique_ids(items: list[Any], label: str, errors: list[str]) -> set[str]:
     return ids
 
 
-def validate(model: dict[str, Any]) -> list[str]:
+def validate(model: dict[str, Any], check_design: bool = False) -> list[str]:
     errors: list[str] = []
     project = model.get("project")
     if not isinstance(project, dict) or not nonempty(project.get("name")) or not nonempty(project.get("core_promise")):
@@ -93,6 +93,8 @@ def validate(model: dict[str, Any]) -> list[str]:
     if not isinstance(scenes, list):
         errors.append("scenes must be a list")
         scenes = []
+    if check_design and not scenes:
+        errors.append("design check requires at least one scene")
     unique_ids(scenes, "scenes", errors)
     for index, scene in enumerate(scenes):
         if not isinstance(scene, dict):
@@ -106,6 +108,14 @@ def validate(model: dict[str, Any]) -> list[str]:
             errors.append(f"scenes[{index}].mode must be one of: {', '.join(sorted(MODES))}")
         if not strings(scene.get("evidence")):
             errors.append(f"scenes[{index}].evidence must be a non-empty string list")
+        if check_design:
+            if scene.get("level") not in {"overview", "subflow", "mechanism"}:
+                errors.append(f"scenes[{index}].level must be overview, subflow or mechanism")
+            for key in ("anchor", "visible_change", "choice_reason"):
+                if not nonempty(scene.get(key)):
+                    errors.append(f"scenes[{index}].{key} is required for design check")
+            if not strings(scene.get("technical_anchors")):
+                errors.append(f"scenes[{index}].technical_anchors must identify the implementation relevant to the claim")
         covers = scene.get("covers", [])
         if not isinstance(covers, list) or not all(nonempty(item) for item in covers):
             errors.append(f"scenes[{index}].covers must be a string list when provided")
@@ -118,8 +128,9 @@ def validate(model: dict[str, Any]) -> list[str]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("model", type=Path)
+    parser.add_argument("--design", action="store_true", help="Check overview/subflow/mechanism depth, continuity, technical anchors and visual consequences")
     args = parser.parse_args()
-    errors = validate(load(args.model))
+    errors = validate(load(args.model), check_design=args.design)
     if errors:
         print("Story model invalid:")
         print("\n".join(f"- {error}" for error in errors))

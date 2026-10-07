@@ -1,0 +1,405 @@
+{
+  "canvas": {
+    "width": 1280,
+    "height": 720
+  },
+  "scenes": [
+    {
+      "id": "architecture-full",
+      "nodes": [
+        {
+          "id": "client",
+          "bounds": {
+            "x": 64.84,
+            "y": 257.4,
+            "width": 120.32000000000001,
+            "height": 115.2
+          }
+        },
+        {
+          "id": "handler",
+          "bounds": {
+            "x": 274.84,
+            "y": 257.4,
+            "width": 120.32000000000001,
+            "height": 115.2
+          }
+        },
+        {
+          "id": "service",
+          "bounds": {
+            "x": 479.84,
+            "y": 257.4,
+            "width": 120.32000000000001,
+            "height": 115.2
+          }
+        },
+        {
+          "id": "repo",
+          "bounds": {
+            "x": 704.84,
+            "y": 257.4,
+            "width": 120.32000000000001,
+            "height": 115.2
+          }
+        },
+        {
+          "id": "db",
+          "bounds": {
+            "x": 1024.84,
+            "y": 257.4,
+            "width": 120.32000000000001,
+            "height": 115.2
+          }
+        },
+        {
+          "id": "cache",
+          "bounds": {
+            "x": 1024.84,
+            "y": 472.4,
+            "width": 120.32000000000001,
+            "height": 115.2
+          }
+        }
+      ],
+      "routes": [
+        {
+          "id": "client-handler",
+          "points": [
+            [
+              175,
+              315
+            ],
+            [
+              287,
+              315
+            ]
+          ],
+          "allowThrough": [
+            "client",
+            "handler"
+          ]
+        },
+        {
+          "id": "handler-service",
+          "points": [
+            [
+              383,
+              315
+            ],
+            [
+              492,
+              315
+            ]
+          ],
+          "allowThrough": [
+            "handler",
+            "service"
+          ]
+        },
+        {
+          "id": "service-repo",
+          "points": [
+            [
+              588,
+              315
+            ],
+            [
+              717,
+              315
+            ]
+          ],
+          "allowThrough": [
+            "service",
+            "repo"
+          ]
+        },
+        {
+          "id": "repo-cache",
+          "points": [
+            [
+              808,
+              335
+            ],
+            [
+              910,
+              335
+            ],
+            [
+              910,
+              510
+            ],
+            [
+              1036,
+              510
+            ]
+          ],
+          "allowThrough": [
+            "repo",
+            "cache"
+          ]
+        },
+        {
+          "id": "repo-db",
+          "points": [
+            [
+              808,
+              315
+            ],
+            [
+              1036,
+              315
+            ]
+          ],
+          "allowThrough": [
+            "repo",
+            "db"
+          ]
+        }
+      ],
+      "textBlocks": [
+        {
+          "id": "client-label",
+          "text": "客户端",
+          "fontSize": 17.28,
+          "maxLines": 1,
+          "lineHeight": 20.48,
+          "box": {
+            "x": 25,
+            "y": 371.32,
+            "width": 200,
+            "height": 22.400000000000002
+          }
+        },
+        {
+          "id": "handler-label",
+          "text": "RequestHandler",
+          "fontSize": 17.28,
+          "maxLines": 1,
+          "lineHeight": 20.48,
+          "box": {
+            "x": 235,
+            "y": 371.32,
+            "width": 200,
+            "height": 22.400000000000002
+          }
+        },
+        {
+          "id": "service-label",
+          "text": "ResourceService",
+          "fontSize": 17.28,
+          "maxLines": 1,
+          "lineHeight": 20.48,
+          "box": {
+            "x": 440,
+            "y": 371.32,
+            "width": 200,
+            "height": 22.400000000000002
+          }
+        },
+        {
+          "id": "repo-label",
+          "text": "CachedRepository",
+          "fontSize": 17.28,
+          "maxLines": 1,
+          "lineHeight": 20.48,
+          "box": {
+            "x": 665,
+            "y": 371.32,
+            "width": 200,
+            "height": 22.400000000000002
+          }
+        },
+        {
+          "id": "db-label",
+          "text": "持久化数据库",
+          "fontSize": 17.28,
+          "maxLines": 1,
+          "lineHeight": 20.48,
+          "box": {
+            "x": 985,
+            "y": 371.32,
+            "width": 200,
+            "height": 22.400000000000002
+          }
+        },
+        {
+          "id": "cache-label",
+          "text": "共享缓存",
+          "fontSize": 17.28,
+          "maxLines": 1,
+          "lineHeight": 20.48,
+          "box": {
+            "x": 985,
+            "y": 586.32,
+            "width": 200,
+            "height": 22.400000000000002
+          }
+        },
+        {
+          "id": "title",
+          "text": "从全景进入机制：同一个对象，同一个请求",
+          "fontSize": 34,
+          "maxLines": 1,
+          "lineHeight": 44,
+          "box": {
+            "x": 54,
+            "y": 23,
+            "width": 1180,
+            "height": 50
+          }
+        },
+        {
+          "id": "caption",
+          "text": "全景保留层级与代表类型；方法和字段在需要解释机制时展开。",
+          "fontSize": 25,
+          "maxLines": 1,
+          "lineHeight": 33,
+          "box": {
+            "x": 54,
+            "y": 654,
+            "width": 1180,
+            "height": 42
+          }
+        }
+      ]
+    },
+    {
+      "id": "architecture-local",
+      "nodes": [
+        {
+          "id": "repo",
+          "bounds": {
+            "x": 502.78,
+            "y": 213.3,
+            "width": 118.44,
+            "height": 113.4
+          }
+        },
+        {
+          "id": "cache",
+          "bounds": {
+            "x": 757.78,
+            "y": 213.3,
+            "width": 118.44,
+            "height": 113.4
+          }
+        },
+        {
+          "id": "db",
+          "bounds": {
+            "x": 1022.78,
+            "y": 213.3,
+            "width": 118.44,
+            "height": 113.4
+          }
+        }
+      ],
+      "routes": [
+        {
+          "id": "cache-call",
+          "points": [
+            [
+              605,
+              270
+            ],
+            [
+              767,
+              270
+            ]
+          ],
+          "allowThrough": [
+            "repo",
+            "cache"
+          ]
+        },
+        {
+          "id": "db-call",
+          "points": [
+            [
+              562,
+              230
+            ],
+            [
+              562,
+              197
+            ],
+            [
+              1082,
+              197
+            ],
+            [
+              1082,
+              223
+            ]
+          ],
+          "allowThrough": [
+            "repo",
+            "db"
+          ]
+        },
+        {
+          "id": "db-return",
+          "points": [
+            [
+              1033,
+              270
+            ],
+            [
+              932,
+              270
+            ],
+            [
+              932,
+              390
+            ],
+            [
+              662,
+              390
+            ],
+            [
+              662,
+              297
+            ],
+            [
+              605,
+              297
+            ]
+          ],
+          "allowThrough": [
+            "db",
+            "repo"
+          ]
+        }
+      ],
+      "textBlocks": [
+        {
+          "id": "title",
+          "text": "从全景进入机制：同一个对象，同一个请求",
+          "fontSize": 34,
+          "maxLines": 1,
+          "lineHeight": 44,
+          "box": {
+            "x": 54,
+            "y": 23,
+            "width": 1180,
+            "height": 50
+          }
+        },
+        {
+          "id": "caption",
+          "text": "全景保留层级与代表类型；方法和字段在需要解释机制时展开。",
+          "fontSize": 25,
+          "maxLines": 1,
+          "lineHeight": 33,
+          "box": {
+            "x": 54,
+            "y": 654,
+            "width": 1180,
+            "height": 42
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -26,6 +26,10 @@ https://github.com/user-attachments/assets/ee333178-5f02-48f1-a056-304d81ff9da3
 | [Composition patterns](assets/previews/composition-patterns.mp4) | Selecting from multiple instances, entering a detail from an overview, parallel work, and convergence |
 | [Visual library](assets/previews/visual-library.mp4) | Agents, storage, terminals, models, tools, waiting/resuming, and cycles |
 | [Focus trail](assets/previews/focus-trail.mp4) | Keeping your place while moving from a system overview into a subflow |
+| [Backend glyphs](assets/previews/backend-glyphs.mp4) | Distinct silhouettes for clients, services, repositories, stores, consumers and scripts |
+| [Backend state](assets/previews/backend-resources.mp4) | Events, snapshots, leases and transaction boundaries |
+| [Causal timeline](assets/previews/causal-timeline.mp4) | Arrival before execution, explicit parallel branches and joins |
+| [Architecture map](assets/previews/architecture-map.mp4) | Shared overview/detail identity and progressive implementation detail |
 
 If the player does not render on the current page, open the linked MP4 directly.
 
@@ -38,7 +42,7 @@ If the player does not render on the current page, open the linked MP4 directly.
 
 ## What it makes clear
 
-The animation puts relationships scattered through the code onto one timeline:
+The animation connects relationships scattered through the code within one system model:
 
 - Where a request or task begins, which boundaries it crosses, and who receives the result.
 - Which object owns state, when it waits, and what lets it continue.
@@ -52,8 +56,8 @@ The video normally starts with the overview and then enlarges the important subf
 
 The Skill works through the following stages; the finished video only shows what helps a viewer understand the system.
 
-1. **Understand the project.** Read the README first. If it is missing, ask whether to investigate and create one. Then trace real entry points, triggers, state changes, outcomes, and important branches.
-2. **Choose what matters.** Produce a project summary and 3-4 evidence-backed points, then use an interviewer's questions to locate the parts most likely to be confused or worth expanding.
+1. **Understand the project.** Read the README first. If it is missing, create an overview in the video artifact directory and continue. Then trace real entry points, triggers, state changes, outcomes, and important branches.
+2. **Choose what matters.** Reuse an existing resume description, or produce a project summary and 3-4 evidence-backed points when needed, then use an interviewer's questions to locate the parts most likely to be confused or worth expanding.
 3. **Choose a main path.** Compare candidate task or data lifecycles and select one anchor path with the supporting mechanisms it needs. One video is the default; independently understandable lifecycles can be split into at most three.
 4. **Design a continuous explanation.** Use overview-to-detail focus, progressive causality, before/after comparisons, parallel lanes, or cross-cutting returns where they fit. Labels carry names, state, conditions, and short prompts; motion explains the causal change.
 5. **Add the details left out of the video.** Write short chapter-based notes for implementation trade-offs, boundary conditions, and source entry points. Link interview questions to timestamps or notes.
@@ -116,6 +120,10 @@ Useful deep dives, currently in Chinese:
 
 - [Project exploration and main-path selection](references/project-exploration.md)
 - [Continuous storyboard rules](references/storyboard-rules.md)
+- [Explanation quality and detail selection](references/explanation-quality.md)
+- [Shared architecture map](references/architecture-map.md)
+- [Causal timeline](references/causal-timeline.md)
+- [Native SVG rendering](references/native-svg-rendering.md)
 - [Reusable visual components](references/visual-components.md)
 - [Composition patterns](references/composition-patterns.md)
 - [Layout contract and static checks](references/layout-validation.md)
@@ -127,7 +135,7 @@ Useful deep dives, currently in Chinese:
 - One video by default, with no more than three when independent main paths need separate treatment.
 - Confirm relationships from source code, tests, and available execution evidence before deciding how to animate them. Unverified relationships remain open questions.
 - Template icons and scenes are optional building blocks. Project-specific expressions belong in the target project's output directory.
-- The Skill runs type, layout, render, and output-specification checks. Final viewing quality is confirmed at the target resolution.
+- The Skill checks facts, types, layout, timing, representative visuals and encoded output. If the user explicitly takes responsibility for playback review, the remaining unverified scope is recorded.
 
 ## Related docs
 

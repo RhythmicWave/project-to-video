@@ -35,11 +35,26 @@ Agent 是参与者，其目标、状态与工具范围可逐步展开。存储�
 
 项目中新设计的资源先在项目工作区验证。正式共享库只复用已有明确实现；扩展遵循当前项目需要和用户授权。
 
+## 按讲解任务选择资源
+
+| 画面要表达 | 资源入口 |
+| --- | --- |
+| 谁参与、属于什么职责 | BackendGlyphs；Agent / WorkerRack 按实际参与者选择 |
+| 状态放在哪里、怎样变化 | DataStore / EventRail / SnapshotStack / LeaseBadge / AtomicWriteSet |
+| 整体结构、局部所在位置 | ArchitectureMap + OverviewDetail；或 FocusTrail 等一种主要导航 |
+| 发出、到达、执行、返回、汇合 | CausalTimeline + CausalMotion |
+| 条件、记录、最小代码或字段 | Paper / Terminal / WrappedLabel；文字承载具体判断 |
+
+参数、语义边界及演示见[组件目录](visual-components.md)、[后端资源](backend-resources.md)和[架构地图](architecture-map.md)。先匹配语义，再选形状；图标与路径之外还要设计载荷到达后真正可见的状态后果。现有资源不能表达机制时，允许在项目中新增或组合，不为套用组件改变事实。
+
 ## 已提供的可选资源
 
 | 层级 | 资源 | 使用条件 |
 | --- | --- | --- |
 | 基础绘制 / 系统表达 | [图标与载荷](visual-components.md) · Agent、Archive、Terminal、Model、Toolbox 等 | 需要清晰区分参与者、存储、服务、工具与数据 |
+| 系统表达 | [后端对象与状态](backend-resources.md) · BackendGlyph、EventRail、SnapshotStack、LeaseBadge、AtomicWriteSet | 需要区别职责、状态容器与提交边界 |
+| 讲解场景 | [架构地图](architecture-map.md) · ArchitectureMap | 全景与缩略图共用节点身份与连接 |
+| 行为模式 | [因果时间轴](causal-timeline.md) · CausalActor、CausalTransfer、CausalReady | 顺序、分叉、汇合和状态提交需要共同依赖 |
 | 行为模式 | [时序与循环](visual-components.md) · Transfer、AwaitResume、PhaseLoop | 传递、等待恢复与迭代；由项目明确给出路径和时序 |
 | 讲解场景 | [逐层聚焦导航](focus-navigation.md) · FocusTrail | 全景与多层细节之间需要持续定位；路径由项目确定，可替换为其他导航 |
 | 系统表达 / 讲解场景 | [候选选择与局部展开](composition-patterns.md) · InstanceSelection、OverviewDetail | 多实例定位、保持全景身份后进入细节 |

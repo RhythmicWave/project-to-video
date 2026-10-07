@@ -1,0 +1,27 @@
+{
+ "canvas":{"width":1280,"height":720},
+ "scenes":[{
+  "id":"causal-demo",
+  "nodes":[
+   {"id":"request","bounds":{"x":70,"y":246.8,"width":120,"height":86.4}},
+   {"id":"coordinator","bounds":{"x":370,"y":246.8,"width":120,"height":86.4}},
+   {"id":"left","bounds":{"x":715,"y":171.8,"width":120,"height":86.4}},
+   {"id":"right","bounds":{"x":715,"y":416.8,"width":120,"height":86.4}},
+   {"id":"combine","bounds":{"x":1060,"y":286.8,"width":120,"height":86.4}},
+   {"id":"result","bounds":{"x":400,"y":558,"width":505,"height":64}}
+  ],
+  "routes":[
+   {"id":"request-wire","points":[[190,290],[370,290]],"allowThrough":["request","coordinator"]},
+   {"id":"fork-left","points":[[490,270],[590,270],[590,215],[715,215]],"allowThrough":["coordinator","left"]},
+   {"id":"fork-right","points":[[490,310],[590,310],[590,460],[715,460]],"allowThrough":["coordinator","right"]},
+   {"id":"left-return","points":[[835,215],[965,215],[965,310],[1060,310]],"allowThrough":["left","combine"]},
+   {"id":"right-return","points":[[835,460],[965,460],[965,350],[1060,350]],"allowThrough":["right","combine"]},
+   {"id":"publish","points":[[1120,375],[1120,590],[905,590]],"allowThrough":["combine","result"]}
+  ],
+  "textBlocks":[
+   {"id":"title","text":"因果时序：到达，再处理，完成后继续","fontSize":34,"maxLines":1,"lineHeight":44,"box":{"x":64,"y":28,"width":1152,"height":48}},
+   {"id":"caption","text":"修改前段时长，后续传输、处理、状态和字幕一起移动","fontSize":26,"maxLines":1,"lineHeight":35,"box":{"x":64,"y":650,"width":1152,"height":40}},
+   {"id":"right-label","text":"分支 B","fontSize":15.6,"maxLines":1,"lineHeight":22,"box":{"x":715,"y":513,"width":120,"height":24}}
+  ]
+ }]
+}

@@ -16,7 +16,7 @@
 
 ## 先看效果
 
-下面的预览来自 Skill 自带的通用演示Demo视频。
+下面的预览来自 Skill 自带的中性示例，展示可按项目选择的表达能力。
 
 https://github.com/user-attachments/assets/ee333178-5f02-48f1-a056-304d81ff9da3
 
@@ -27,6 +27,10 @@ https://github.com/user-attachments/assets/ee333178-5f02-48f1-a056-304d81ff9da3
 | [组合场景](assets/previews/composition-patterns.mp4) | 多实例选择、全景进入局部、并行推进与汇合 |
 | [视觉组件](assets/previews/visual-library.mp4) | Agent、存储、终端、模型、工具，以及等待恢复和循环 |
 | [逐层聚焦](assets/previews/focus-trail.mp4) | 从系统全景进入子流程时，怎样保留当前位置 |
+| [后端对象轮廓](assets/previews/backend-glyphs.mp4) | 客户端、入口、服务、仓储、数据库、缓存、事件、消费者、时钟、堆和脚本 |
+| [后端状态资源](assets/previews/backend-resources.mp4) | 服务进程、消息片段、快照、租约、事务提交与回滚 |
+| [因果时间轴](assets/previews/causal-timeline.mp4) | 到达后处理、顺序、显式并发与汇合 |
+| [架构地图](assets/previews/architecture-map.mp4) | 同源全景与局部，按镜头逐步展开技术细节 |
 
 如果当前页面不直接显示播放器，点击表格中的视频文件即可播放。
 
@@ -39,7 +43,7 @@ https://github.com/user-attachments/assets/ee333178-5f02-48f1-a056-304d81ff9da3
 
 ## 它会帮你看清什么
 
-动画把代码里分散的关系放回同一条时间线上：
+动画把代码里分散的关系连接到同一份系统模型：
 
 - 一个请求或任务从哪里进入，经过哪些边界，最后把结果交给谁；
 - 哪个对象持有状态，什么时候等待，什么事件让它继续；
@@ -53,8 +57,8 @@ https://github.com/user-attachments/assets/ee333178-5f02-48f1-a056-304d81ff9da3
 
 Skill 的工作过程如下，成片只呈现理解最有帮助的部分：
 
-1. **先摸清项目。** 先读 README；如果没有 README，会询问是否先调研并补建。随后从真实入口、触发点和测试出发，跟到状态变化、结果去向和重要分支。
-2. **整理理解重点。** 写出项目名、一句总述和 3–4 条有依据的项目要点，再从面试官视角列出可能的追问，找出最容易混淆、也最值得展开的部分。
+1. **先摸清项目。** 读 README 与用户指定资料；缺少 README 时在视频资料中建立概览继续。随后从真实入口、触发点和测试出发，跟到状态变化、结果去向和重要分支。
+2. **整理理解重点。** 复用用户已有简历；缺少时写出项目名、一句总述和 3–4 条有依据的要点，再从面试官视角列出可能的追问，找出最容易混淆、也最值得展开的部分。
 3. **选一条主线。** 以任务或数据生命周期为单位比较候选流程，确定一条锚点主线和必要的支撑机制。通常制作一条视频，确实存在独立生命周期时最多拆成三条。
 4. **设计连续画面。** 依据机制选择全景聚焦、递进因果、前后对照、并行泳道或横切回挂。文字只承担名称、状态、条件和必要提示，动作负责说明因果。
 5. **补上视频没有展开的部分。** 按章节写短笔记，补充实现取舍、边界条件和源码入口，并把面试问题关联到视频时间或笔记段落。
@@ -98,7 +102,7 @@ Skill 会在目标项目根目录创建独立的 `.project-to-video/`。目录�
 
 Claude Code 可以使用 `/project-to-video`，也可以直接描述同样的目标。已有 `.project-to-video/` 时会优先续用有效资料。
 
-安装 Skill 本身不需要 npm 依赖。开始制作视频时，再在目标项目的 `.project-to-video/remotion/` 中安装 Node.js/npm、Remotion 及渲染所需浏览器。模板复制、开发、检查和渲染命令见 [Remotion 工程说明](references/remotion-template.md) 与 [模板 README](assets/remotion-template/README.md)。
+安装 Skill 本身不需要 npm 依赖。开始制作视频时，再在目标项目的 `.project-to-video/remotion/` 中安装 Remotion 工程依赖，并使用可用的 Node.js/npm 与渲染器。模板复制、开发、检查和渲染命令见 [Remotion 工程说明](references/remotion-template.md) 与 [模板 README](assets/remotion-template/README.md)。
 
 多 Agent 是可选能力，同时最多三个（包含主 Agent）；无法并行时会顺序完成相同范围的调研。
 
@@ -117,10 +121,15 @@ Claude Code 可以使用 `/project-to-video`，也可以直接描述同样的目
 
 - [项目探索与主线选择](references/project-exploration.md)：从任务和数据生命周期抓主线，决定哪里展开、哪里收束。
 - [连续分镜规则](references/storyboard-rules.md)：保持对象身份、状态变化和镜头承接。
+- [讲解质量与详略](references/explanation-quality.md)：按镜头问题决定技术依据与表达形式。
+- [架构地图](references/architecture-map.md)：全景与缩略图共享身份、连接和因果时钟。
+- [因果时间轴](references/causal-timeline.md)：节点、传输、结果、字幕及采样共享依赖。
 - [可复用组件](references/visual-components.md)：Agent、存储、消息、等待恢复、循环等现成表达。
 - [组合场景](references/composition-patterns.md)：多实例、全景缩略、局部展开、并行和汇合。
 - [布局契约与静态检查](references/layout-validation.md)：减少文字遮挡、端口错位、斜线和微小折点。
 - [节奏与阅读时间](references/pacing-and-timing.md)：让动作更利落，同时给关键状态留下阅读时间。
+- [后端对象与状态资源](references/backend-resources.md)：服务、存储、缓存、事件、消费者、租约、快照与事务；含中性可播放演示。
+- [高效渲染与停顿检查](references/render-efficiency.md)：运动区间、静止帧复用、分章恢复与实际时间映射。
 
 ## 默认约定
 
@@ -128,4 +137,4 @@ Claude Code 可以使用 `/project-to-video`，也可以直接描述同样的目
 - 默认一条视频；只有独立主线无法在一条片子里讲清时才拆分，最多三条。
 - 先用源码、测试和运行结果确认关系，再决定如何画；没有证据的关系保留为疑点。
 - 模板里的图标和场景是可选能力，可以替换、组合或不用；项目专属表达放在项目产物目录中。
-- Skill 会完成类型、布局、渲染和文件规格检查；完整播放观感由使用者在目标分辨率下确认。
+- Skill 主动完成事实、类型、布局、时序与代表画面/成片检查；用户明确自行观看时按该分工执行，并记录未验证范围。

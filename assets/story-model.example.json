@@ -17,7 +17,9 @@
           "to": "请求入口",
           "action": "接收请求",
           "result": "获得关联 ID",
-          "evidence": ["src/transport/server.ts:receive"]
+          "evidence": [
+            "src/transport/server.ts:receive"
+          ]
         },
         {
           "id": "process",
@@ -25,7 +27,9 @@
           "to": "处理器",
           "action": "校验并处理",
           "result": "生成结果或进入分支",
-          "evidence": ["src/service/request.ts:process"]
+          "evidence": [
+            "src/service/request.ts:process"
+          ]
         },
         {
           "id": "persist",
@@ -33,7 +37,9 @@
           "to": "记录存储",
           "action": "追加记录",
           "result": "后续请求可读取",
-          "evidence": ["src/store/log.ts:append"]
+          "evidence": [
+            "src/store/log.ts:append"
+          ]
         }
       ],
       "branches": [
@@ -42,7 +48,9 @@
           "condition": "校验未通过",
           "outcome": "返回错误并结束本次请求",
           "next": "end",
-          "evidence": ["src/service/request.ts:reject"]
+          "evidence": [
+            "src/service/request.ts:reject"
+          ]
         }
       ]
     }
@@ -53,19 +61,72 @@
       "flow": "request-lifecycle",
       "claim": "一次请求穿过入口、处理器和记录存储",
       "mode": "overview",
-      "evidence": ["flow:request-lifecycle"],
-      "covers": ["入口", "结果去向"]
+      "evidence": [
+        "flow:request-lifecycle"
+      ],
+      "covers": [
+        "入口",
+        "结果去向"
+      ],
+      "level": "overview",
+      "anchor": "请求 #42 · 同一张系统图",
+      "technical_anchors": [
+        "RequestHandler",
+        "RequestService",
+        "RecordRepository"
+      ],
+      "visible_change": "稳定全景中，请求依次经过入口、业务服务与记录仓储，结果返回客户端",
+      "choice_reason": "先交代层级、记录所有者与结果去向，再进入条件分支"
     },
     {
       "id": "gate",
       "flow": "request-lifecycle",
       "claim": "校验失败时请求沿错误分支结束",
       "mode": "progressive_causal",
-      "evidence": ["flow:request-lifecycle.branch:rejected"],
-      "covers": ["条件分支", "错误结果"]
+      "evidence": [
+        "flow:request-lifecycle.branch:rejected"
+      ],
+      "covers": [
+        "条件分支",
+        "错误结果"
+      ],
+      "level": "mechanism",
+      "anchor": "RequestService · 同一个请求 #42",
+      "technical_anchors": [
+        "RequestService.process",
+        "valid=false"
+      ],
+      "visible_change": "校验条件为 false，错误载荷沿返回分支回到入口，记录存储保持原状态",
+      "choice_reason": "用条件与前后状态说明失败为何结束请求"
+    },
+    {
+      "id": "record",
+      "flow": "request-lifecycle",
+      "claim": "成功请求通过 RecordRepository.append 留下供后续读取的记录",
+      "mode": "state_change",
+      "level": "subflow",
+      "anchor": "RecordRepository · 请求 #42",
+      "technical_anchors": [
+        "RecordRepository.append",
+        "RecordRepository.get"
+      ],
+      "visible_change": "记录 #42 写入存储；后续读取载荷关联同一 ID",
+      "choice_reason": "一条代表记录连接写入者、状态所有者与下一次读取",
+      "evidence": [
+        "src/store/log.ts:append",
+        "src/store/log.ts:get"
+      ],
+      "covers": [
+        "记录归属",
+        "写入后读取"
+      ]
     }
   ],
   "coverage": [
-    {"question": "失败如何返回？", "scene": "gate", "status": "video"}
+    {
+      "question": "失败如何返回？",
+      "scene": "gate",
+      "status": "video"
+    }
   ]
 }

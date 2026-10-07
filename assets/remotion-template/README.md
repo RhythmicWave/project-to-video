@@ -1,30 +1,39 @@
-# 项目复习 Remotion 起始工程
+# Remotion 起始工程
 
-复制到目标项目的 `.project-to-video/remotion/` 后工作。此工程注册 `Patterns/FocusTrailDemo`（7 秒导航）、`Patterns/VisualLibraryDemo`（24 秒图标与行为）、`Patterns/CompositionPatternsDemo`（25 秒选择/局部展开/并行）和 `Patterns/ProgressiveCausalDemo`（25 秒递进因果），均为 1280×720、30 fps。按项目分镜实现连续场景，在 `src/Root.tsx` 注册正式 Composition；视频默认规格为 1920×1080、30 fps。
+复制到目标项目的 `.project-to-video/remotion/` 使用。此模板提供中性表达资源，正式视频按项目事实实现并注册；默认成片为1080p/30fps，示例为720p/30fps。
 
-安装与验证：
+| Composition | 时长 | 用途 / 导出命令 |
+| --- | --- | --- |
+| ArchitectureMapDemo | 21s | 同源架构与机制展开；npm run render:map |
+| CausalTimelineDemo | 12s | 顺序、分叉、汇合；npm run render:causal |
+| BackendGlyphsDemo | 8s | 十一种参与者轮廓；npm run render:glyphs |
+| BackendResourcesDemo | 24s | 进程、消息、快照、租约、事务；npm run render:backend |
+| FocusTrailDemo | 7s | 逐层定位；npm run render |
+| VisualLibraryDemo | 24s | 对象、等待恢复与循环 |
+| CompositionPatternsDemo | 25s | 候选选择、全景展开与并行 |
+| ProgressiveCausalDemo | 25s | 递进步骤、条件门和结构转换；npm run render:progressive |
 
 ```text
 npm ci
 npm run check
-npm run dev
-npm run still
-npm run render
 npm run check:layout
+npm run check:timeline
+npm run check:map
+npm run dev
 ```
 
-项目事实放在 props、JSON 或 TypeScript 数据中。新增场景在 `src/Root.tsx` 注册，`src/index.tsx` 保留 `registerRoot()`。用帧计算控制运动，抽查进入、到达、等待、恢复和退出。
+`check:layout` 核对基础与因果示例，并从架构模型生成 layout.map.json 检查全景和局部。实际项目登记自己的长标签、容器、端口及线路。模板与 Skill 根目录的 check-layout.mjs 使用同一契约，维护时同步。
 
-正式成片命令使用实际 Composition ID 与输出位置，例如从此工程目录执行 `npx remotion render src/index.tsx Architecture ../output/architecture.mp4 --codec=h264`，前提是已注册 Architecture。依赖与临时输出在复制后的项目工程安装和生成。
+`src/index.tsx` 保留 registerRoot，Composition 在 src/Root.tsx 注册。每个正式镜头使用纯帧函数，可独立重建；事实、名称、布局和证据作为项目数据。字体来自使用环境，中文及状态符号需要实渲染检查。
 
-FocusTrail 在 SVG 内使用，由调用者提供路径与时间；它不推断包含、调用或所有权关系。示例演示讲解聚焦的逐层进入，不能据此推断目标项目架构。其字体使用系统中文字体，部署到不同环境时需要核对字体是否可用。
+按需复制 src/visual 的实现及其 imports：BackendGlyphs/BackendResources 识别对象与状态，ArchitectureMap 保持拓扑身份，causal-timeline/CausalMotion 绑定执行，Scenes/FocusTrail 处理可选镜头及导航。参数和限制见[视觉资源](../../references/visual-library.md)、[架构地图](../../references/architecture-map.md)与[因果时间轴](../../references/causal-timeline.md)。
 
-视觉实现位于 src/visual：Systems.tsx 提供系统图标，Behaviors.tsx 提供传递、等待恢复和循环。运行 `npx remotion render src/index.tsx VisualLibraryDemo out/visual-library.mp4` 查看组合演示。
+示例不能证明项目使用同样的架构、并发或回填方式。用户已定义的技术层级、关键条件及执行顺序按项目核实。新组件留在项目目录；共享维护需用户要求。
 
-组合场景见 src/visual/Scenes.tsx，边界端口与坐标变换见 geometry.ts。运行 `npx remotion render src/index.tsx CompositionPatternsDemo out/composition-patterns.mp4` 可生成对应演示。
+正式导出使用真实 Composition ID，例如已注册 Architecture 时：
 
-递进因果组件见 src/visual/Progressive.tsx；运行 `npm run render:progressive` 可生成对应演示。步骤卡、决策门和上下文变换不推断业务关系，需由场景传入证据支持的标签、分支和时间。
+```text
+npx remotion render src/index.tsx Architecture ../output/architecture.mp4 --codec=h264
+```
 
-`scripts/check-layout.mjs` 和 `layout.example.json` 提供渲染前的节点、文字和端口路线检查；正式项目应复制 manifest 并按实际场景登记节点。
-
-模板内的 `check-layout.mjs` 与仓库根目录的同名脚本保持同一检查契约：前者随模板复制到目标项目，后者用于维护 Skill 本身。两处新增或调整布局约束时应同步更新。
+离屏渲染可使用 `--browser-executable=<已安装浏览器路径>`；这是动画工具，不改变用户浏览器的选择。纯 SVG 可按[原生渲染](../../references/native-svg-rendering.md)使用 resvg + sharp；不需要所有项目额外安装这些库。
