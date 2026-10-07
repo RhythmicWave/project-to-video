@@ -2,7 +2,7 @@
 
 从 `assets/remotion-template/src/visual/` 复制所需实现及 `theme.ts` 到目标项目，或者复制整个模板。组件均在父级 SVG 中使用；坐标、时间与业务标签由调用者提供。颜色集中在 theme.ts，可按项目调整。
 
-按实际 imports 复制依赖，例如使用节奏组件时带上 `pacing.ts`。它只提供动作时长的起点：默认 `balanced`，复习回看可选择 `fast-review`，文字密度高或首次学习可选择 `spacious`。组件仍保留显式 `duration`，不要为了套档位牺牲关键因果的观察时间。
+按实际 imports 复制依赖。使用节奏组件时带上 `pacing.ts`；档位和局部覆盖见[节奏与阅读时间](pacing-and-timing.md)。
 
 ## 系统表达
 
@@ -44,15 +44,9 @@
   task="请求处理" other="其他请求" signal="I/O 完成" />
 ```
 
-## 讲解场景
+## 其他资源
 
-[ArchitectureMap](architecture-map.md) 让全景和缩略图共享节点、连接和区域模型；聚焦框与执行环分开，传输使用已有因果时间轴。配套 Cache Aside 中性演示及模型/接收依赖检查。
-
-层级定位使用已有的 [FocusTrail](focus-navigation.md)。导航是讲解路径；真实父子关系、调用展开和临时聚焦窗口要区分。全景→局部可通过保持对象身份、缩放与导航同步实现，是否增加缩略全景由实际认知收益决定。
-
-需要现成的候选选择、全景缩略展开、并行泳道或边界端口函数时，读取[组合场景](composition-patterns.md)。新增组件的风格与讲解完整性遵循[表达规则](explanation-quality.md)。
-
-需要按因果逐步加入步骤、条件门或上下文前后变化时，读取[递进因果讲解](progressive-causal.md)，使用模板中的 Progressive.tsx。它是局部讲解能力，不应替代全景图；步骤、分支后果、证据和全局锚点由项目场景提供。
+本页维护 Systems.tsx 与 Behaviors.tsx 的接口。后端状态、架构地图、导航、组合场景和递进因果从[资源选择](visual-library.md#按讲解任务查接口)按任务进入；新增组件沿用该页的风格约定。
 
 ## 演示与检查
 

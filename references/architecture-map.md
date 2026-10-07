@@ -28,6 +28,16 @@ validateMapBindings(model, timeline);
 
 `validateArchitectureModel` 检查唯一身份、端点引用及线路几何；`validateMapBindings` 检查 route 引用，并要求接收者任务依赖载荷到达，包括反向返回。它们在模型编排后调用；运行区间、join及状态检查继续使用因果时间轴。区域、标签、线路登记布局 manifest，重点查看缩放后的长标签和交叉路径。
 
+## 同一地图的两次使用
+
+开头通常只用 model 和轻量结构呈现建立定位，保留必要技术层级；采用全景作结时，仍用同一 model、节点 ID 与线路几何，另编译一条简短的 recap timeline 回放已经讲过的主链路。增加的技术提示作为绑定原对象或连接的覆盖层，不另造一张失去身份对应的总图。详略与选择依据见[讲解质量](explanation-quality.md)。
+
+回顾编排沿用现有接口：`task.actor` 绑定处理对象，`transfer.route` 绑定已登记的 edge，`reverse` 表示沿原路线返回；提交值由相应 state 事件完成派生。技术提示引用同一 timeline 的事件开始或完成，不另写时间常量。全景聚焦与知识回顾提示只改变注意范围，不启动 active 状态或提前点亮后续路径。
+
+`CausalTransfer.label` 可标出请求 ID、数据种类或结果等短载荷身份。当前 ArchitectureMap 默认只显示移动标记；需要短标签时，由项目适配层将事件对应的标签传给 CausalTransfer。标签不能代替移动和接收后果；进入同一节点的并发载荷要检查重叠，可减少重复标签、错开提示出现或调整展示位置，不能为避让把真实并发改画成顺序。当前地图在同一条 edge 上一次只呈现一个传输，多载荷共享路线时需先适配渲染，不能依赖默认选择而漏掉分支。
+
+回顾仍调用 `validateMapBindings` 并检查到达、完成和提交边界。复习允许省略已讲清楚的内部动作，不能借省略改变调用端点、同步/异步关系或汇合条件；先后差异有教学必要时，在内部设计记录中说明。
+
 ## 中性示例
 
 [ArchitectureMapDemo.tsx](../assets/remotion-template/src/scenes/ArchitectureMapDemo.tsx) 用一条资源读取请求展示分层和缓存/数据库关系，再将同一地图缩到侧面，展开请求 #42 的 miss、DB 返回与回填。示例是教学编排；不同项目按其同步/异步回填与错误边界调整，不能据此宣称源码采用相同实现。

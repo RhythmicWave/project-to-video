@@ -6,6 +6,7 @@
     "check": "tsc --noEmit",
     "check:layout": "node scripts/check-layout.mjs layout.example.json && node scripts/check-layout.mjs layout.causal.json && node --import tsx scripts/build-map-layout.ts && node scripts/check-layout.mjs layout.map.json",
     "check:timeline": "node --test scripts/test-causal-timeline.mjs",
+    "check:pacing": "node --test scripts/test-pacing-budget.mjs",
     "check:map": "node --import tsx --test scripts/test-architecture-map.tsx",
     "render:map": "remotion render src/index.tsx ArchitectureMapDemo out/architecture-map.mp4 --codec=h264",
     "render:causal": "remotion render src/index.tsx CausalTimelineDemo out/causal-timeline.mp4 --codec=h264",

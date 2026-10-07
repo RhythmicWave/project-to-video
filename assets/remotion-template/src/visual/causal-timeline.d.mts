@@ -3,7 +3,7 @@ export type EventSpec={id:string;kind:EventKind;duration:number;at?:number;after
 export type TimedEvent=EventSpec&{startFrame:number;endFrame:number};
 export type Phase='pending'|'running'|'done';
 export type Timeline={fps:number;events:readonly TimedEvent[];get:(id:string)=>TimedEvent;frameAt:(time:number)=>number;start:(id:string)=>number;end:(id:string)=>number;phase:(id:string,time:number)=>Phase;started:(id:string,time:number)=>boolean;done:(id:string,time:number)=>boolean;progress:(id:string,time:number)=>number;actorPhase:(actor:string,time:number)=>Phase};
-export type Cue=[number,string,{event:string;edge?:string}?];
+export type Cue=[number,string,{event:string;edge?:string;readingSeconds?:number}?];
 export function compileTimeline(specs:EventSpec[],fps?:number):Timeline;
 export function resolveCues(cues:Cue[],timeline:Timeline):Cue[];
 export function timelineWindows(timeline:Timeline,duration:number,cueTimes?:number[]):[number,number][];

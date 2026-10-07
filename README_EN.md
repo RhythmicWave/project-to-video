@@ -101,7 +101,7 @@ Use $project-to-video to analyze this project and create an animated architectur
 
 In Claude Code, use `/project-to-video` or describe the same goal in natural language. Existing `.project-to-video/` materials are reused when they are still valid.
 
-Installing the Skill itself requires no npm dependencies. When it is time to make a video, install Node.js/npm, Remotion, and the rendering browser inside the target project's `.project-to-video/remotion/` directory. See the [Remotion guide (Chinese)](references/remotion-template.md) and [template README (Chinese)](assets/remotion-template/README.md) for copying, developing, checking, and rendering the template.
+Installing the Skill itself requires no npm dependencies. When it is time to make a video, use Node.js/npm and install the animation dependencies in the target project's `.project-to-video/remotion/` directory. Browser rendering can use an installed browser; pure SVG scenes can use the optional native renderer. See the [Remotion guide (Chinese)](references/remotion-template.md) and [template README (Chinese)](assets/remotion-template/README.md) for copying, developing, checking, and rendering the template.
 
 Multi-agent research is optional and uses at most three active agents, including the primary agent. The same work can run sequentially when parallel agents are unavailable.
 

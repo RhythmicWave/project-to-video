@@ -36,7 +36,7 @@ description: 将软件项目转化为有源码依据的架构与核心机制讲�
 
 先写一句观众看完应能解释的核心结论，选择任务或数据生命周期作为锚点，支撑机制只在它回答主线疑问时展开。按[讲解质量与详略](references/explanation-quality.md)决定每个镜头保留哪些技术层级、代表符号、条件与状态；按[连续分镜](references/storyboard-rules.md)选择表达。
 
-跨模块系统通常先建立全景，再进入局部并回挂结果。保持稳定对象身份或全局位置。全景保留必要架构层级与少量代表类型；局部展示当前动作的方法/协议，机制镜头展示决定结果的字段、SQL/Lua或不变量。按问题选择因果递进、状态对照、并行泳道、结果回溯或横切叠加，章节不必使用同一版式。
+跨模块系统通常先建立全景，再进入局部；采用全景作结时，沿已讲主链路动态回挂，见[同源架构地图](references/architecture-map.md)。保持稳定对象身份或全局位置。全景保留必要架构层级与少量代表类型；局部展示当前动作的方法/协议，机制镜头展示决定结果的字段、SQL/Lua或不变量。按问题选择因果递进、状态对照、并行泳道、结果回溯或横切叠加，章节不必使用同一版式。
 
 每个关键镜头记录：**学习结论、全局锚点、可回查技术符号、可见状态后果、表达方式及理由、证据**。简单项目可合并记录。可用[解释模型示例](assets/story-model.example.json)与 `scripts/validate-story-model.py model.json --design` 检查引用和必要信息；早期探索可省略 --design，脚本不判断艺术质量。
 
@@ -50,7 +50,7 @@ description: 将软件项目转化为有源码依据的架构与核心机制讲�
 
 按[工程说明](references/remotion-template.md)使用纯帧函数；按[布局契约](references/layout-validation.md)登记边界、标签和线路。先验证总览到局部的转场和一个最难机制，再扩展成片。可采用拖动预览、关键帧或短片，不设例行批准关卡。
 
-按[节奏与阅读时间](references/pacing-and-timing.md)分开动作和观察，按[高效渲染](references/render-efficiency.md)选择采样、原生 SVG、分章缓存及编码器。渲染策略在首次长导出前确定，修改只重绘依赖受影响的章节；性能改善以实测阶段耗时为准。
+按[节奏与阅读时间](references/pacing-and-timing.md)分开动作、观察和字幕预算，停顿压缩后检查实际阅读时长；按[高效渲染](references/render-efficiency.md)选择采样、原生 SVG、分章缓存及编码器。渲染策略在首次长导出前确定，修改只重绘依赖受影响的章节；性能改善以实测阶段耗时为准。
 
 **完成条件**：类型、布局、因果边界和代表画面检查通过；随后按[交付检查](references/qa-checklist.md)核对编码视频、停顿及实际字幕/章节。用户明确自行观看时保留检查分工，未验证项如实记录。
 
@@ -59,11 +59,3 @@ description: 将软件项目转化为有源码依据的架构与核心机制讲�
 按[产物组织](references/deliverables.md)交付 MP4、可运行工程、现有简历引用、实际章节索引及简短补充笔记。问题关联视频片段或笔记，不以出现模块名认定已经解释。
 
 笔记补充影响回答的实现细节、取舍、边界与源码入口；研究记录按需回查。修订后更新真实时间及引用，清理本次生成的失效成片、预览和缓存，保留当前输出及有效缓存，不删除用户原有资料。
-
-## 按需资源
-
-- [架构地图](references/architecture-map.md)：全景与缩略图共享模型，聚焦与执行分别绑定。
-- [后端对象与状态](references/backend-resources.md)：图标、进程、消息、快照、租约和事务。
-- [可复用组件](references/visual-components.md)：基础对象、连线与行为接口。
-- [组合场景](references/composition-patterns.md)、[聚焦导航](references/focus-navigation.md)、[递进因果](references/progressive-causal.md)：选择局部展开方式。
-- [原生 SVG 渲染](references/native-svg-rendering.md)、[成片检查](references/video-inspection.md)：适用条件与输出核查。

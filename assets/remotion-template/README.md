@@ -19,6 +19,7 @@ npm run check
 npm run check:layout
 npm run check:timeline
 npm run check:map
+npm run check:pacing
 npm run dev
 ```
 
@@ -27,6 +28,8 @@ npm run dev
 `src/index.tsx` 保留 registerRoot，Composition 在 src/Root.tsx 注册。每个正式镜头使用纯帧函数，可独立重建；事实、名称、布局和证据作为项目数据。字体来自使用环境，中文及状态符号需要实渲染检查。
 
 按需复制 src/visual 的实现及其 imports：BackendGlyphs/BackendResources 识别对象与状态，ArchitectureMap 保持拓扑身份，causal-timeline/CausalMotion 绑定执行，Scenes/FocusTrail 处理可选镜头及导航。参数和限制见[视觉资源](../../references/visual-library.md)、[架构地图](../../references/architecture-map.md)与[因果时间轴](../../references/causal-timeline.md)。
+
+`pacing-budget.mjs` 为无配音字幕估算阅读预算，并在压缩已经证明相同的图像段时保留必要时间；它不负责证明图像相同。编排与编码后检查见[节奏说明](../../references/pacing-and-timing.md)。
 
 示例不能证明项目使用同样的架构、并发或回填方式。用户已定义的技术层级、关键条件及执行顺序按项目核实。新组件留在项目目录；共享维护需用户要求。
 
